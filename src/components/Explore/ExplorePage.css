@@ -1,0 +1,79 @@
+.explore-page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #87CEEB; /* Sky Blue */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.suggested-accounts {
+  margin-bottom: 20px;
+}
+
+.trending-posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Add spacing between cards */
+}
+
+.post-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 300px;
+  margin: auto;
+}
+
+.post-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.post-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-card-content {
+  padding: 15px;
+}
+
+.post-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.post-card-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 10px 0;
+}
+
+.post-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+}
+
+.post-card-footer .post-card-author {
+  font-size: 0.8em;
+  color: #333;
+}
+
+.post-card-footer .post-card-date {
+  font-size: 0.8em;
+  color: #999;
+}

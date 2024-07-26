@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 
 const SearchBar = ({ items }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [query, setQuery] = useState('');
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearch = (e) => {
+    setQuery(e.target.value);
+    // Implement search functionality here, such as filtering the `items` array
   };
 
-  const filteredItems = items.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
+    <div className="search-bar">
+      <input 
+        type="text" 
+        placeholder="Search recipes..." 
+        value={query}
         onChange={handleSearch}
       />
-      <ul>
-        {filteredItems.map((item, index) => (
-          <li key={index}>{item.title}</li>
-        ))}
-      </ul>
+      {/* Optionally, display search results or suggestions based on the query */}
     </div>
   );
 };

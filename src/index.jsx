@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import { AuthProvider } from './context/AuthContext'; // Adjust path as needed
+import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
 
 ReactDOM.render(
-  <AuthProvider> {/* Wrap App with AuthProvider */}
-    <App />
-  </AuthProvider>,
+  <Router>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </Router>,
   document.getElementById('root')
 );
