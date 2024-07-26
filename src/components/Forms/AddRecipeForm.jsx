@@ -12,22 +12,28 @@ const AddRecipeForm = () => {
   const { user } = useContext(AuthContext); // Use user from context
 
   const handleImageChange = (e) => {
-    setImages(e.target.files);
+    setImages(e.target.files); // Set the files from input
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Create a new FormData instance
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     formData.append('ingredients', ingredients);
     formData.append('steps', steps);
-    formData.append('authorId', user._id);
-    for (let i = 0; i < images.length; i++) {
-      formData.append('images', images[i]);
-    }
+    formData.append('authorId', user?._id); // Make sure this is correctly retrieved and not null
 
-    console.log('Form Data:', formData);
+    // Append each image file to the form data
+    Array.from(images).forEach(image => {
+      formData.append('images', image);
+    });
+
+    // Log the FormData entries for debugging
+    const formDataEntries = Array.from(formData.entries());
+    console.log('Form Data Entries:', formDataEntries);
 
     try {
       const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
@@ -36,12 +42,19 @@ const AddRecipeForm = () => {
       const response = await axios.post('http://localhost:4000/api/recipes/add_new_recipe', formData, {
         headers: {
           'Authorization': `Bearer ${token}`, // Include token
-          'Content-Type': 'multipart/form-data',
+          // 'Content-Type': 'multipart/form-data', // axios handles this automatically
         },
       });
+
       console.log('Recipe added successfully:', response.data);
+      // Optionally, you could reset the form fields here
+      setTitle('');
+      setDescription('');
+      setIngredients('');
+      setSteps('');
+      setImages([]);
     } catch (error) {
-      console.error('Error adding recipe:', error);
+      console.error('Error adding recipe:', error.response ? error.response.data : error.message);
     }
   };
 
